@@ -14,7 +14,7 @@ export default function ToDoForm({changeFetchTodos}) {
         const fd = new FormData(e.target);
         const toDo = Object.fromEntries(fd.entries());
         try {
-            await axios.post('http://127.0.0.1:8000/api/todos', toDo);
+            await axios.post(process.env.REACT_APP_API_URL+'/todos', toDo);
             e.target.reset();
             setIsAddedSuccessfully(true);
             changeFetchTodos(true);

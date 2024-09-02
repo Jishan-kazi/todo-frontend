@@ -10,7 +10,7 @@ export default function ToDoList({fetchTodos}) {
 
     const getTodos = useCallback(async function getTodos() {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/todos');
+            const response = await axios.get(process.env.REACT_APP_API_URL+'/todos');
             setTodos(response.data.records);
         } catch (error) {
             setError(error?.response?.data?.message || 'Problem in fetching data')

@@ -15,7 +15,7 @@ export default function ToDoItem({ element, getTodos }) {
                 confirmButtonText: "Yes, delete it!"
               }).then(async (result) => {
                 if (result.isConfirmed) {
-                    const response = await axios.delete('http://localhost:8000/api/todos/'+element.id);
+                    const response = await axios.delete(process.env.REACT_APP_API_URL+'/todos/'+element.id);
                     if (response.status === 200) {
                         getTodos();
                         Swal.fire({
@@ -38,7 +38,7 @@ export default function ToDoItem({ element, getTodos }) {
 
     async function handleStatus() {
         try {
-            const response = await axios.post('http://localhost:8000/api/change-status/'+element.id);
+            const response = await axios.post(process.env.REACT_APP_API_URL+'/change-status/'+element.id);
             if (response.status === 200) {
                 getTodos();
                 Swal.fire({
